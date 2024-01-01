@@ -1,0 +1,204 @@
+*{
+    /* Reset  do css, por padrão o navegador impõe uma margin e um padding de 8px, em muitos casos temos de reseta-lo: */
+    margin: 0;
+    padding: 0;
+    /* O box sizing serve para manter as propiedades do elemento a partir da borda, por exemplo um padding, se a largura
+    do elemento for de 360px ele manterá a largura. */
+    box-sizing: border-box;
+}
+
+:root{
+    --text-color: white;
+    --bg-url: url(./assets/bg-mobile.jpg);
+    --strock-color: rgba(255, 255, 255, 0.5);
+    --surface-color: rgba(255, 255, 255, 0.1);
+    --surface-color-hover: rgba(255, 255, 255, 0.05);
+    --highlight-color: rgba(255, 255, 255, 0.2);
+    --switch-bg-url: url(./assets/moon-stars.svg);
+}
+
+.light{
+    --text-color: black;
+    --bg-url: url(./assets/bg-mobile-light.jpg);
+    --strock-color: rgba(0,0,0,0.5);
+    --surface-color: rgba(255, 255, 255, 0.1);
+    --surface-color-hover: rgba(255, 255, 255, 0.02);
+    --highlight-color: rgba(0,0,0,0.2);
+    --switch-bg-url: url(./assets/sun.svg);
+}
+
+body{
+    /* Coloca a imagem que está localizado no caminho descrito na url como funfo da página. */
+    background-image: var(--bg-url);
+    /* Posiciona a imagem no centro da página. */ 
+    background-position: center top;
+    /* Preenche totalmente o fundo da página, sem deixar espaços em branco. */ 
+    background-size: cover; 
+    /* Não permite que o fundo da página repita. */
+    background-repeat: no-repeat; 
+    height: 100vh;
+}
+
+body *{
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+}
+
+/* O '#' representa que estamos utilizando o ID(container) que está presente no HTML que 
+representa algum elemento, nesse caso uma div. */
+#container{
+    /* Altura do elemento */
+    /* height: 712px;
+    /* Largura do elemetno */
+    width: 100%;
+    max-width: 588px;
+    /* A margem da caixa se AUTO prencherá para todas as direções, centralizando o elemento. */
+    margin: 56px auto 0;
+    padding: 0 24px;
+}
+
+#profile{
+    text-align: center;
+    padding: 24px;
+}
+
+#profile img{
+    /* Transforma a imagem em um elemento block. Agora ela tem propiedades block. */
+    display: block;
+    /* largura da Imagem, não precisamos colocar a altura pois ela se configuara com a largura. */
+    width: 112px;
+    margin: auto;
+}
+
+#profile p{
+    /* Largura da fonte: peso de 500. */
+    font-weight: 500;
+    /* Altura da linha da linha. */
+    line-height: 24px;
+    margin-top: 8px;
+}
+
+#switch{
+    position: relative;
+    width: 64px;
+    margin: 4px auto;
+}
+
+#switch button{
+    width: 32px;
+    height: 32px;
+    background: white var(--switch-bg-url) no-repeat center;
+    border-radius: 50%;
+    border: 0;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    transform: translateY(-50%);
+    top: 50%;
+
+    animation: slide-out 0.5s;
+}
+
+#switch span{
+    display: block;
+    width: 64px;
+    height: 24px;
+    background-color: var(--surface-color);
+    border: 1px solid var(--strock-color);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 9999px;
+
+}
+
+.light #switch button{
+    animation: slide-in 0.5s forwards;
+}
+
+#switch button:hover{
+    outline: 8px solid var(--highlight-color);
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 0;
+}
+
+ul li a{
+    display: flex;
+    padding: 16px 24px;
+    justify-content: center;
+    background-color: var(--surface-color);
+    border: 1px solid var(--strock-color);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    font-weight: 500;
+    text-decoration: none;
+    
+    transition: background 0.5s;
+}
+
+ul li a:hover{
+    background-color: var(--surface-color-hover);
+    border: 1.5px solid --text-color;
+}
+
+#social-links{
+    display: flex;
+    padding: 24px 0;
+    font-size: 24px;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+#social-links a:hover{
+    padding: 16px;
+    background-color: var(--highlight-color);
+    border-radius: 50px;
+}
+
+#social-links a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}
+
+footer{
+    padding: 24px;
+    text-align: center;
+    font-size: 14px;
+}
+
+@media(min-width: 700px){
+    :root{
+        --bg-url: url(./assets/bg-desktop.jpg);
+    }
+
+    .light{
+        --bg-url: url(./assets/bg-desktop-light.jpg);
+    }
+}
+
+@keyframes slide-in{
+    from{
+        left: 0;
+    }
+    to{
+        left: 50%;
+    }
+}
+
+@keyframes slide-out{
+    from{
+        left: 50%;
+    }
+    to{
+        left: 0;
+    }
+}
